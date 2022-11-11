@@ -1,0 +1,27 @@
+{
+  "name": "telegram_chatbotapp",
+  "version": "1.0.0",
+  "description": "Teligram chat bot application",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "nodemon bot.js",
+    "start-pro": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ramsmujh111/Telegram_ChatbotApp.git"
+  },
+  "author": "Ramsmujh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ramsmujh111/Telegram_ChatbotApp/issues"
+  },
+  "homepage": "https://github.com/Ramsmujh111/Telegram_ChatbotApp#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "email-validator": "^2.0.4",
+    "mongoose": "^6.7.2",
+    "nodemon": "^2.0.20",
+    "telegraf": "^4.10.0"
+  }
+}
