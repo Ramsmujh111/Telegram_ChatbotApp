@@ -1,27 +1,29 @@
 {
-  "name": "telegram_chatbotapp",
-  "version": "1.0.0",
-  "description": "Teligram chat bot application",
+  "name": "node-js-getting-started",
+  "version": "0.3.0",
+  "description": "A sample Node.js app using Express 4",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "index.js",
   "scripts": {
-    "start-dev": "nodemon bot.js",
-    "start-pro": "node bot.js"
+    "start": "node bot.js",
+    "dev": "nodemon bot.js"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "email-validator": "^2.0.4",
+    "nodemon": "^2.0.20",
+    "telegraf": "^3.38.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ramsmujh111/Telegram_ChatbotApp.git"
+    "url": "https://github.com/heroku/node-js-getting-started"
   },
-  "author": "Ramsmujh",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Ramsmujh111/Telegram_ChatbotApp/issues"
-  },
-  "homepage": "https://github.com/Ramsmujh111/Telegram_ChatbotApp#readme",
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "email-validator": "^2.0.4",
-    "mongoose": "^6.7.2",
-    "nodemon": "^2.0.20",
-    "telegraf": "^4.10.0"
-  }
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }

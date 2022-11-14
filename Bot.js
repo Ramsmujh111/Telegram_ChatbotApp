@@ -1,54 +1,36 @@
-const { Telegraf } = require("telegraf");
-const Mongoose = require('mongoose');
-const emailValidator = require('email-validator');
-require("dotenv").config();
+require('dotenv').config()
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const { Telegraf, session } = require('telegraf')
 
-const helpMessage = `
-This is the cat bot Application Please check,
-/help -> type help to try on the help case
-/database -> go for database and show the all credentials from the database
-`;
-/**
- * Create a help message for the user
- */
+const Stage = require('telegraf/stage')
 
-bot.help((ctx) => {
-  ctx.reply(helpMessage);
-});
+const {
+    emailScene,
+    passScene
+} = require('./scenes')
 
-/**
- * create text message for the users and authenticate with the database
- */
-// bot.on('text' , async (ctx) =>{
-//     const message = ctx.message.text // here i received a message to bot as a string
-//     if(message === 'Hi' || message === 'Hello'){
-//       return ctx.reply(`Welcome To chat Bot
-//         Please enter your email 
-//        `)
-//     }
-//     // here is the validate the email id
-//     const email = emailValidator.validate(message);
-//     // check the email id is valid ?
-//     if(!email){
-//        return ctx.reply(`Please Enter the Valid Email`);
-//     }
-//    const users = await Mongoose.connection.db.collection('users');
-//    // find the user in the database
-//    users.find().toArray(function(err , data){
-//          if(err) {
-//             return console.log(`email id does not available`);
-//          }
-//        ctx.reply(`Please Enter the Password`);
-//    });    
-// })
+const stage = new Stage([emailScene, passScene])
 
-Mongoose.connect(process.env.MONGO_URI)
-.then((result) =>{
-   console.log(`DataBase connected successfully`);
-   bot.launch();
+const bot = new Telegraf(process.env.BOT_TOKEN)
+
+bot.use(session())
+bot.use(stage.middleware())
+
+bot.start(ctx => ctx.reply("Send the /email command to enter your email. /password to enter your password"))
+
+bot.command('email', ctx => ctx.scene.enter('emailScene'))
+bot.command('password', ctx => ctx.scene.enter('passScene'))
+bot.hears('Hi' , async (ctx) =>{
+    ctx.reply(`Hello,
+      Welcome To chatbot application
+      Please enter your login credentials  using /start command`)
 })
-.catch(err =>{
-    console.log(err.message);
+bot.hears('Hello' , async (ctx) =>{
+    ctx.reply(`Hi,
+      Welcome To chatbot application
+      Please enter you login credentials using /start command`)
 })
+
+bot.help(ctx => ctx.reply(ctx.session.name + " " + ctx.session.age))
+
+bot.launch()
