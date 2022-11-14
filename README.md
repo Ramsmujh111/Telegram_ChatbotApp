@@ -1,2 +1,2 @@
-Oddiy scenelar bilan ishlaydigan bot
-Youtubeda video tutorial [bu yerda](https://www.youtube.com/watch?v=j4ZfTtbTPdk)
+# Telegram chatBot Application
+In This Application user can interact with the telegram chatbot channels and His send the ours Credential to Login
