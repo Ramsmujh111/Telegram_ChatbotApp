@@ -1,12 +1,13 @@
 const Scene = require('telegraf/scenes/base')
 const emailValidator = require('email-validator');
-
+// creating emailScene object from the Scene class
 const emailScene = new Scene('emailScene')
-
-emailScene.enter(ctx => ctx.reply('Enter your email:'))
+// call the enter method the invoke the password
+emailScene.enter(ctx => ctx.reply('Enter your email:'));
 
 emailScene.on('text', (ctx) => {
    try {
+   
     ctx.session.email = ctx.message.text
     const email = emailValidator.validate(ctx.session.email);
     if(!email){

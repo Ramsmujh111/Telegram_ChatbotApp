@@ -1,7 +1,7 @@
 const Scene = require('telegraf/scenes/base')
-
+// creating passScene object from the Scene class
 const passScene = new Scene('passScene')
-
+// call the enter method the invoke the password
 passScene.enter(ctx => ctx.reply('Enter your password:'));
 
 passScene.on('text', ctx => {
@@ -13,7 +13,7 @@ passScene.on('text', ctx => {
     }
     return ctx.scene.leave()
 })
-
+// this is Leave the scene event 
 passScene.leave(ctx => ctx.reply(`Login Successful
 Thanks for your time
 `))
